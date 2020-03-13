@@ -559,7 +559,6 @@ class BoolqProcessor(DataProcessor):
             text_b = line["question"]
             label = line["label"]
             examples.append(InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
-        print(examples, "-"*50)
         return examples
 
 
