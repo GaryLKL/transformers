@@ -5,7 +5,6 @@
 #SBATCH --job-name="nlu_hw4"
 
 module purge
-module load anaconda3/5.3.1
 module load cuda/10.0.130
 module load gcc/6.3.0
 
