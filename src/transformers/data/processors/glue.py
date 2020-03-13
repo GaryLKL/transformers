@@ -529,6 +529,13 @@ class BoolqProcessor(DataProcessor):
             str(tensor_dict["label"].numpy()),
         )
 
+    def my_read_jsonl(self, data_dir):
+        boolq_data = []
+        with open(data_dir, "r") as f:
+            for line in f:
+                boolq_data.append(json.loads(line.strip()))
+        return boolq_data
+
     def get_train_examples(self, data_dir):
         """See base class."""
         logger.info("LOOKING AT {}".format(os.path.join(data_dir, "train.jsonl")))
