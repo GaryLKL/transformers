@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 #SBATCH --gres=gpu:1
-#SBATCH --mem=16000
-#SBATCH --time=0:30:00
+#SBATCH --mem=16GB
+#SBATCH --time=5:00:00
 #SBATCH --job-name="nlu_hw4"
+#SBATCH --output=slurm_%j.out
 
 module purge
 module load cuda/10.0.130
@@ -12,7 +13,13 @@ module load gcc/6.3.0
 NETID=kll482
 source activate /scratch/${NETID}/nlu/env
 
+# === Set up transformers === #
+export PYTORCH_TRANSFORMERS_CACHE=/scratch/${NETID}/nlu/cache
+
 cd /scratch/${NETID}/nlu/code/transformers
+
+pip install -r ./examples/requirements.txt
+pip install boto3 filelock requests tqdm sentencepiece sacremoses tokenizers
 
 GLUE_DIR=/scratch/${NETID}/nlu/data
 TASK_NAME=BoolQ
@@ -29,5 +36,6 @@ python ./examples/run_glue.py \
     --per_gpu_eval_batch_size=8   \
     --per_gpu_train_batch_size=8   \
     --learning_rate 2e-5 \
+    --seed 111 \
     --num_train_epochs 3.0 \
     --output_dir /scratch/${NETID}/nlu/${TASK_NAME}_run/
