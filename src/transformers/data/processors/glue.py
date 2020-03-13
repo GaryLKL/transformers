@@ -552,12 +552,13 @@ class BoolqProcessor(DataProcessor):
     def _create_examples(self, lines, set_type):
         """Creates examples for the training and dev sets."""
         examples = []
-        print(lines[0], "11111"*10)
+
         for (i, line) in enumerate(lines):
             guid = "%s-%s" % (set_type, i)
             text_a = line["passage"]
             text_b = line["question"]
             label = line["label"]
+            print(text_a, text_b, label, "++++"*10)
             examples.append(InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
         return examples
 
