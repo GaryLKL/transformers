@@ -1,11 +1,13 @@
 #!/bin/sh
 #SBATCH --gres=gpu:1
-#SBATCH --mem=16000
+#SBATCH --mem=16GB
 #SBATCH --time=0:30:00
 #SBATCH --job-name="nlu_hw4"
+#SBATCH --output=slurm_%j.out
 
 module purge
 module load cuda/10.0.130
+module load anaconda3/5.3.1
 module load gcc/6.3.0
 
 # Replace with your NetID
