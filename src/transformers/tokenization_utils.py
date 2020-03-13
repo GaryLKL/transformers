@@ -931,7 +931,7 @@ class PreTrainedTokenizer(object):
         truncation_strategy: str = "longest_first",
         pad_to_max_length: bool = False,
         return_tensors: Optional[str] = None,
-        return_token_type_ids: Optional[bool] = None,
+        return_token_type_ids: Optional[bool] = True,
         return_attention_mask: Optional[bool] = None,
         return_overflowing_tokens: bool = False,
         return_special_tokens_mask: bool = False,
