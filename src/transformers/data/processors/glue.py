@@ -552,6 +552,7 @@ class BoolqProcessor(DataProcessor):
     def _create_examples(self, lines, set_type):
         """Creates examples for the training and dev sets."""
         examples = []
+        print(lines[0])
         for (i, line) in enumerate(lines):
             guid = "%s-%s" % (set_type, i)
             text_a = line["passage"]
