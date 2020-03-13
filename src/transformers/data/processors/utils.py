@@ -126,13 +126,7 @@ class DataProcessor(object):
         with open(input_file, "r", encoding="utf-8-sig") as f:
             return list(csv.reader(f, delimiter="\t", quotechar=quotechar))
 
-    @classmethod
-    def my_read_jsonl(self, data_dir):
-        boolq_data = []
-        with open(data_dir, "r") as f:
-            for line in f:
-                boolq_data.append(json.loads(line.strip()))
-        return boolq_data
+
 
 
 class SingleSentenceClassificationProcessor(DataProcessor):
